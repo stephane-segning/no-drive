@@ -1,0 +1,8 @@
+@startuml
+actor "User Device" as Device
+participant NotificationService
+participant MQTTServer
+
+MQTTServer -> NotificationService: File Sync Event(user_id, file_metadata)
+NotificationService -> Device: File Sync Notification(user_id, file_metadata)
+@enduml

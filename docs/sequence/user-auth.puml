@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant Frontend
+participant UserService
+participant OAuth2Server
+participant Database
+
+User -> Frontend: Login(credentials)
+Frontend -> UserService: Forward Credentials(credentials)
+UserService -> OAuth2Server: Authenticate(credentials)
+OAuth2Server -> UserService: Token
+UserService -> Database: Check User Info(user_id)
+Database -> UserService: User Info
+UserService -> Frontend: Login Success with Token
+Frontend -> User: Login Success with Token
+@enduml

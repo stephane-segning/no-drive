@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant Frontend
+participant UserService
+participant OAuth2Server
+participant Database
+participant NotificationService
+
+User -> Frontend: Register(user_info)
+Frontend -> UserService: Registration Request(user_info)
+UserService -> Database: Create User(user_info)
+Database -> UserService: Success
+UserService -> OAuth2Server: Register Client(user_info)
+OAuth2Server -> UserService: Client Credentials
+UserService -> NotificationService: Send Registration Event(user_id)
+NotificationService -> UserService: Success
+UserService -> Frontend: Registration Success
+Frontend -> User: Registration Success
+@enduml

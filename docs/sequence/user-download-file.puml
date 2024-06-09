@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant FileStorage
+
+User -> Frontend: Download File(file_id)
+Frontend -> FileService: Download File Request(file_id)
+FileService -> FileStorage: Retrieve File(file_id)
+FileStorage -> FileService: File
+FileService -> Frontend: Send File
+Frontend -> User: Send File
+@enduml

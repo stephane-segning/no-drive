@@ -1,0 +1,23 @@
+[package]
+name = "no-drive-model"
+version = "0.1.0"
+edition = "2021"
+authors = ["Selast <selastlambou@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-trait.workspace = true
+dotenv.workspace = true
+shaku.workspace = true
+tokio.workspace = true
+uuid.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+
+log.workspace = true
+env_logger.workspace = true
+pretty_env_logger.workspace = true
+
+tracing-log.workspace = true

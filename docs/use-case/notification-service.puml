@@ -1,0 +1,11 @@
+@startuml
+actor User
+actor "User Device" as Device
+
+rectangle NotificationService {
+  Device <-> (Subscribe to MQTT Topics)
+  Device <- (Receive File Sync Notifications)
+  Device <- (Receive Conflict Notifications)
+  Device <- (Receive General Notifications)
+}
+@enduml

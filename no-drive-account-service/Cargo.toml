@@ -1,0 +1,29 @@
+[package]
+name = "no-drive-account-service"
+version = "0.1.0"
+edition = "2021"
+authors = ["Selast <selastlambou@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+no-drive-model = { path = "../no-drive-model" }
+
+actix-web.workspace = true
+async-trait.workspace = true
+diesel.workspace = true
+dotenv.workspace = true
+shaku.workspace = true
+tokio.workspace = true
+uuid.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+
+log.workspace = true
+
+tracing.workspace = true
+tracing-log.workspace = true
+tracing-actix-web.workspace = true
+
+oxide-auth = "0"

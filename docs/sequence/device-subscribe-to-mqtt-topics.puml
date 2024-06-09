@@ -1,0 +1,16 @@
+@startuml
+actor "User Device" as Device
+participant Frontend
+participant NotificationService
+participant MQTTServer
+participant Database
+
+Device -> Frontend: Subscribe to MQTT Topics()
+Frontend -> NotificationService: Subscribe Request(user_id, topics)
+NotificationService -> MQTTServer: Subscribe(user_id, topics)
+MQTTServer -> NotificationService: Success
+NotificationService -> Database: Store Subscription(user_id, topics)
+Database -> NotificationService: Success
+NotificationService -> Frontend: Subscription Success
+Frontend -> Device: Subscription Success
+@enduml

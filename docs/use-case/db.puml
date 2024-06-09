@@ -1,0 +1,10 @@
+@startuml
+actor UserService
+actor FileService
+
+rectangle Database {
+  UserService -> (Manage User Data)
+  FileService -> (Store File Metadata)
+  FileService -> (Retrieve File Metadata)
+}
+@enduml

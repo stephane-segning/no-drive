@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant Database
+participant FileStorage
+participant NotificationService
+
+User -> Frontend: Upload File(file_data)
+Frontend -> FileService: Upload File Request(file_data)
+FileService -> FileStorage: Store File(file_data)
+FileStorage -> FileService: Success
+FileService -> Database: Update File Metadata(file_metadata)
+Database -> FileService: Success
+FileService -> NotificationService: Send File Upload Event(user_id, file_metadata)
+NotificationService -> FileService: Success
+FileService -> Frontend: Upload Success
+Frontend -> User: Upload Success
+@enduml

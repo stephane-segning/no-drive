@@ -1,0 +1,13 @@
+@startuml
+actor User
+
+rectangle FileService {
+  User -> (Upload File)
+  User -> (Download File)
+  User -> (Manage Files)
+  User -> (Share File)
+  User -> (Initial Sync)
+  User -> (Periodic Sync)
+  User -> (Conflict Resolution)
+}
+@enduml

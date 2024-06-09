@@ -1,0 +1,19 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant Database
+participant FileStorage
+participant NotificationService
+
+User -> Frontend: Initial Sync(user_id)
+Frontend -> FileService: Initial Sync Request(user_id)
+FileService -> Database: Retrieve File List and Metadata(user_id)
+Database -> FileService: File List and Metadata
+FileService -> FileStorage: Retrieve Files(file_list)
+FileStorage -> FileService: Files
+FileService -> Frontend: Send Files and Metadata
+Frontend -> User: Files and Metadata
+FileService -> NotificationService: Send Initial Sync Event(user_id)
+NotificationService -> FileService: Success
+@enduml

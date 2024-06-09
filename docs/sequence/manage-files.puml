@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant Database
+participant NotificationService
+
+User -> Frontend: Manage Files(action, file_metadata)
+Frontend -> FileService: Manage Files Request(action, file_metadata)
+FileService -> Database: Update File Metadata(action, file_metadata)
+Database -> FileService: Success
+FileService -> NotificationService: Send File Management Event(user_id, action, file_metadata)
+NotificationService -> FileService: Success
+FileService -> Frontend: File Management Success
+Frontend -> User: File Management Success
+@enduml

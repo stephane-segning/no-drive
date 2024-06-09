@@ -1,0 +1,22 @@
+@startuml
+actor User
+actor Admin
+participant Frontend
+participant UserService
+participant Database
+participant NotificationService
+
+User -> Frontend: Retrieve User Info()
+Frontend -> UserService: Get User Info(user_id)
+UserService -> Database: Query User Info(user_id)
+Database -> UserService: User Info
+UserService -> Frontend: User Info
+Frontend -> User: User Info
+
+Admin -> Frontend: Retrieve User Info(admin_id)
+Frontend -> UserService: Get Admin Info(admin_id)
+UserService -> Database: Query Admin Info(admin_id)
+Database -> UserService: Admin Info
+UserService -> Frontend: Admin Info
+Frontend -> Admin: Admin Info
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+actor User
+actor Admin
+
+rectangle UserService {
+  User -> (User Registration)
+  User -> (User Login)
+  User -> (Retrieve User Info)
+  User -> (OAuth2 Authentication)
+  Admin -> (Admin Management)
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+actor "User Device" as Device
+participant NotificationService
+participant MQTTServer
+
+MQTTServer -> NotificationService: General Event(user_id, message)
+NotificationService -> Device: General Notification(user_id, message)
+@enduml

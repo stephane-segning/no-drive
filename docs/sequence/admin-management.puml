@@ -1,0 +1,16 @@
+@startuml
+actor Admin
+participant Frontend
+participant UserService
+participant Database
+participant NotificationService
+
+Admin -> Frontend: Admin Management Request(admin_action)
+Frontend -> UserService: Admin Action(admin_action)
+UserService -> Database: Perform Admin Action(admin_action)
+Database -> UserService: Success
+UserService -> NotificationService: Send Admin Action Event(admin_id, admin_action)
+NotificationService -> UserService: Success
+UserService -> Frontend: Admin Action Success
+Frontend -> Admin: Admin Action Success
+@enduml

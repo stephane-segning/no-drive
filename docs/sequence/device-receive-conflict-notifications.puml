@@ -1,0 +1,8 @@
+@startuml
+actor "User Device" as Device
+participant NotificationService
+participant MQTTServer
+
+MQTTServer -> NotificationService: Conflict Event(user_id, file_id)
+NotificationService -> Device: Conflict Notification(user_id, file_id)
+@enduml

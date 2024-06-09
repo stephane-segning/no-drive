@@ -1,0 +1,22 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant Database
+participant FileStorage
+participant NotificationService
+
+User -> Frontend: Conflict Notification(file_id)
+Frontend -> FileService: Conflict Notification(file_id)
+FileService -> FileStorage: Retrieve Conflicting Files(file_id)
+FileStorage -> FileService: Conflicting Files
+FileService -> FileService: Analyze Conflicts(conflicting_files)
+FileService -> FileStorage: Update Files Based on Resolution(resolved_files)
+FileStorage -> FileService: Success
+FileService -> Database: Update File Metadata(file_metadata)
+Database -> FileService: Success
+FileService -> NotificationService: Send Conflict Resolution Event(user_id, file_id)
+NotificationService -> FileService: Success
+FileService -> Frontend: Conflict Resolution Complete
+Frontend -> User: Conflict Resolution Complete
+@enduml

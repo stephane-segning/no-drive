@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant Frontend
+participant FileService
+participant Database
+participant NotificationService
+
+User -> Frontend: Share File(file_id, permissions)
+Frontend -> FileService: Share File Request(file_id, permissions)
+FileService -> Database: Update File Permissions(file_id, permissions)
+Database -> FileService: Success
+FileService -> NotificationService: Send File Share Event(user_id, file_id, permissions)
+NotificationService -> FileService: Success
+FileService -> Frontend: Share Success
+Frontend -> User: Share Success
+@enduml

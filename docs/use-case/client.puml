@@ -1,0 +1,20 @@
+@startuml
+actor User
+actor "User Device" as Device
+
+rectangle Frontend {
+  User -> (User Registration)
+  User -> (User Login)
+  User -> (Upload File)
+  User -> (Download File)
+  User -> (Manage Files)
+  User -> (Share File)
+  User -> (Initial Sync)
+  User -> (Periodic Sync)
+  User -> (Conflict Resolution)
+  Device <-> (Subscribe to MQTT Topics)
+  Device -> (Receive File Sync Notifications)
+  Device -> (Receive Conflict Notifications)
+  Device -> (Receive General Notifications)
+}
+@enduml
