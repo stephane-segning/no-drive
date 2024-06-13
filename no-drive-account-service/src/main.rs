@@ -11,6 +11,7 @@ use no_drive_model::common::app::logger_init;
 #[cfg(test)]
 mod tests;
 
+// Define your domain structs
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash, Default, Ord, PartialOrd)]
 struct UserData {
     username: String,
@@ -26,18 +27,21 @@ struct Credentials {
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, Hash, Default, Ord, PartialOrd)]
 struct Token(String);
 
+// Define the UserService component using Shaku
 #[derive(Component)]
 #[shaku(interface = IUserService)]
 struct UserServiceImpl {
     storage: Arc<std::sync::Mutex<UserStorage>>,
 }
 
+// Define the IUserService trait for dependency injection
 #[async_trait]
 trait IUserService: Interface {
     async fn register_user(&self, user_data: UserData) -> Result<()>;
     async fn login_user(&self, credentials: Credentials) -> Result<Token>;
 }
 
+// Mock user storage
 struct UserStorage {
     users: Vec<UserData>,
 }
@@ -61,6 +65,7 @@ impl UserStorage {
     }
 }
 
+// Implement IUserService for UserServiceImpl
 #[async_trait]
 impl IUserService for UserServiceImpl {
     async fn register_user(&self, user_data: UserData) -> Result<()> {
@@ -78,8 +83,8 @@ impl IUserService for UserServiceImpl {
 
         // Store the user
         let user_to_add = UserData {
-            username: user_data.username.clone(), 
-            password: user_data.password, 
+            username: user_data.username.clone(),
+            password: user_data.password,
         };
 
         if storage.add_user(user_to_add.clone()) {
@@ -95,6 +100,7 @@ impl IUserService for UserServiceImpl {
     }
 }
 
+// Define the AppModule module for dependency injection
 module! {
     AppModule {
         components = [UserServiceImpl],
@@ -102,6 +108,7 @@ module! {
     }
 }
 
+// Handler for registering a user
 async fn register_user(data: web::Data<Arc<AppModule>>, user_data: web::Json<UserData>) -> impl Responder {
     let user_service: &dyn IUserService = data.resolve_ref();
 
