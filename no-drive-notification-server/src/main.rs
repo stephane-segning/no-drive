@@ -2,6 +2,7 @@ use std::sync::Arc;
 
 use actix_web::{App, HttpServer, Responder, web};
 use anyhow::Result;
+use async_trait::async_trait;
 use rumqttc::{AsyncClient, MqttOptions};
 use shaku::{Component, HasComponent, Interface, module, Module, Provider};
 use thiserror::Error;
@@ -23,20 +24,20 @@ pub enum AppError {
 struct NotificationServiceImpl {
     mqtt_client: AsyncClient,
 }
-
+#[async_trait]
 impl INotificationService for NotificationServiceImpl {
-    fn subscribe(&self, user_id: String, topics: Vec<String>) -> Result<()> {
+    async fn subscribe(&self, user_id: String, topics: Vec<String>) -> Result<()> {
         todo!()
     }
 
-    fn send_notification(&self, user_id: String, message: String) -> Result<()> {
+    async fn send_notification(&self, user_id: String, message: String) -> Result<()> {
         todo!()
     }
 }
-
+#[async_trait]
 trait INotificationService: Interface {
-    fn subscribe(&self, user_id: String, topics: Vec<String>) -> Result<()>;
-    fn send_notification(&self, user_id: String, message: String) -> Result<()>;
+    async fn subscribe(&self, user_id: String, topics: Vec<String>) -> Result<()>;
+    async fn send_notification(&self, user_id: String, message: String) -> Result<()>;
 }
 
 module! {
@@ -58,7 +59,7 @@ impl Provider<AppModule> for AsyncClient {
 
 async fn subscribe(data: web::Data<Arc<AppModule>>, user_id: web::Path<String>, topics: web::Json<Vec<String>>) -> impl Responder {
     let notification_service: &dyn INotificationService = data.resolve_ref();
-    notification_service.subscribe(user_id.into_inner(), topics.into_inner()).unwrap();
+    notification_service.subscribe(user_id.into_inner(), topics.into_inner()).await.unwrap();
     "Subscribed"
 }
 
