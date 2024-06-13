@@ -1,6 +1,8 @@
 # Technology Stack for Each Service
 
 1. **User Service:**
+![User service](./use-case/UserService.png "User service")
+
     - **Web Framework:** Actix Web
     - **OAuth2:** OAuth2 server library like `oxide-auth`
     - **Database:** Diesel ORM or SQLx
@@ -8,6 +10,7 @@
     - **Asynchronous Runtime:** Tokio
 
 2. **File Service:**
+![File service](./use-case/FileService.png "File service")
     - **Web Framework:** Actix Web
     - **File Storage:** Use standard filesystem operations (`std::fs`) and S3-compatible APIs (e.g., `rusoto`)
     - **Database:** Diesel ORM or SQLx
@@ -15,6 +18,7 @@
     - **Asynchronous Runtime:** Tokio
 
 3. **Notification Service:**
+![Notification service](./use-case/NotificationService.png "Notification service")
     - **Web Framework:** Actix Web
     - **MQTT:** `rumqttc` for MQTT client/server
     - **Database:** Diesel ORM or SQLx
