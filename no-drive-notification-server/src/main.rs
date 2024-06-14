@@ -27,6 +27,7 @@ struct NotificationServiceImpl {
 #[async_trait]
 impl INotificationService for NotificationServiceImpl {
     async fn subscribe(&self, user_id: String, topics: Vec<String>) -> Result<()> {
+
         todo!()
     }
 
