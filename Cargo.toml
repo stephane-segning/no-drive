@@ -8,30 +8,8 @@ members = [
 ]
 
 [workspace.dependencies]
-actix = "0"
-actix-broker = "0"
-actix-codec = "0"
-actix-cors = "0"
-actix-files = "0"
-actix-http = "3"
-actix-identity = "0"
 actix-multipart = "0"
-actix-multipart-derive = "0"
-actix-protobuf = "0"
-actix-session = "0"
-actix-test = "0"
-actix-tls = "3"
-actix-utils = "3"
 actix-web = "4"
-actix-web-actors = "4"
-actix-web-lab = "0"
-actix-ws = "0"
-
-oxide-auth = "0"
-oxide-auth-actix = "0"
-oxide-auth-async = "0"
-
-minio = "0"
 
 async-trait = "0"
 diesel = { version = "2", features = ["postgres", "r2d2", "uuid"] }

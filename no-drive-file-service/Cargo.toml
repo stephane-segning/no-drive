@@ -25,6 +25,4 @@ log.workspace = true
 tracing.workspace = true
 tracing-log.workspace = true
 tracing-actix-web.workspace = true
-
-minio.workspace = true
 actix-multipart.workspace = true
