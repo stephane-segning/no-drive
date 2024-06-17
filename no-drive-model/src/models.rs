@@ -1,6 +1,5 @@
 use diesel::{Insertable, Queryable, Selectable};
 use crate::schema::users;
-use diesel::prelude::*;
 use serde::Serialize;
 
 #[derive(Queryable, Selectable, Serialize)]
